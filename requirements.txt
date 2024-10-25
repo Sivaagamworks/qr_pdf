@@ -1,0 +1,6 @@
+streamlit
+uvicorn
+reportlab   
+qrcode  
+Pillow
+requests  

@@ -12,9 +12,7 @@ import requests
 import time
 import json
 
-
 def create_qr_pdf(no_of_qr, productName, variant, serialNumber):
-    # Initialize pre-requirements 
     no_of_qr *= 2
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=A4, cropMarks=False)
@@ -61,7 +59,12 @@ def draw_each_layout(count, c, no_of_qr, base_x, base_y, start_x, end_x, start_y
             if no_of_qr == count:
                 break
             qr = qrcode.QRCode(version=1, error_correction=qrcode.constants.ERROR_CORRECT_H, box_size=10, border=0)
-            qr_parameter = f"{prefix}{s_num:06}" if productName == "TamperLoks" else f"{prefix}{s_num:05}"
+            
+            if productName == "TamperLoks":
+                qr_parameter = f"{prefix}{s_num:06}AA"
+            else:
+                qr_parameter = f"{prefix}{s_num:05}"
+
             url = rf"https://www.neovault.app/scan?sn={qr_parameter}"
             image_io = BytesIO()
             qr.add_data(url)
@@ -82,7 +85,7 @@ def draw_each_layout(count, c, no_of_qr, base_x, base_y, start_x, end_x, start_y
 
 products = []
 varients = []
-with open('data.json', 'r') as file:
+with open('data.json', 'r', encoding='utf-8') as file:
     jsonValues = json.load(file)
 for item in jsonValues:
     products.append(item['name'])

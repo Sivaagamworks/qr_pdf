@@ -13,7 +13,7 @@ import time
 import json
 
 def create_qr_pdf(no_of_qr, productName, variant, serialNumber):
-    no_of_qr *= 2
+    # no_of_qr *= 2
     buffer = BytesIO()
     c = canvas.Canvas(buffer, pagesize=A4, cropMarks=False)
     count = 0

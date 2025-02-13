@@ -42,8 +42,8 @@ def add_qr_code_to_pages(count, c, no_of_qr, prefix, s_num, page, productName):
     for layout in range(no_of_layout):
         temp_s_num = s_num
         count, c, s_num = draw_each_layout(count, c, no_of_qr, base_x, base_y, cordinates_for_layout[layout][0], cordinates_for_layout[layout][1], cordinates_for_layout[layout][2], cordinates_for_layout[layout][3], layout, prefix, s_num, productName)
-        if page % 2 == 0:
-            s_num = temp_s_num
+        # if page % 2 == 0:
+        #     s_num = temp_s_num
 
     return count, c, s_num
 
